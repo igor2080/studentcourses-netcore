@@ -1,0 +1,2 @@
+# StudentCourses NetCore
+
