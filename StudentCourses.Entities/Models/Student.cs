@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace StudentCourses.Models
 {
-    public class Student
+    public class Student : IEntityWithId
     {
         [Key]
-        public int StudentId { get; set; }        
+        public int Id { get; set; }        
         [Column(TypeName = "nvarchar(25)")]
         [Required]
         public string FirstName { get; set; }
@@ -19,7 +19,6 @@ namespace StudentCourses.Models
         public string LastName { get; set; }
         [Required]
         public int GroupId { get; set; }
-        [Required]
         public Group Group { get; set; }
 
     }

@@ -32,12 +32,12 @@
                 {
                     <text>|</text>
                 }
-                <a asp-action="Details" asp-route-id="@(i+1)" asp-controller="Group">@Model.Students.ElementAt(i).FirstName @Model.Students.ElementAt(i).LastName</a>
+                <a asp-action="Details" asp-route-id="@(i+1)" asp-controller="Student">@Model.Students.ElementAt(i).FirstName @Model.Students.ElementAt(i).LastName</a>
             }
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.GroupId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

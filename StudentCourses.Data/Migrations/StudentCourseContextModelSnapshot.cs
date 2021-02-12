@@ -20,7 +20,7 @@ namespace StudentCourses.Migrations
 
             modelBuilder.Entity("StudentCourses.Models.Course", b =>
                 {
-                    b.Property<int>("CourseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -32,14 +32,14 @@ namespace StudentCourses.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("CourseId");
+                    b.HasKey("Id");
 
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("StudentCourses.Models.Group", b =>
                 {
-                    b.Property<int>("GroupId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -51,7 +51,7 @@ namespace StudentCourses.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("GroupId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
@@ -60,7 +60,7 @@ namespace StudentCourses.Migrations
 
             modelBuilder.Entity("StudentCourses.Models.Student", b =>
                 {
-                    b.Property<int>("StudentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -76,7 +76,7 @@ namespace StudentCourses.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("StudentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 

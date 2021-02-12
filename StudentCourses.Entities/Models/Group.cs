@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace StudentCourses.Models
 {
-    public class Course
+    public class Group:IEntityWithId
     {
         [Key]
-        public int CourseId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         [Required]
         public string Name { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
-        public string Description { get; set; }
-        public ICollection<Group> Groups { get; set; }
+        public virtual int CourseId { get; set; }
+        public Course Course { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }
