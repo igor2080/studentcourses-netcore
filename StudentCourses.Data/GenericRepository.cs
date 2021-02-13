@@ -34,11 +34,11 @@ namespace StudentCourses.Data
             switch (typeof(T))
             {
                 case var x when x == typeof(Student):
-                    return _dbSet.Include(s => (s as Student).Group);
+                    return _dbSet.AsNoTracking().Include(s => (s as Student).Group);
                 case var x when x == typeof(Group):
-                    return _dbSet.Include(s => (s as Group).Course).AsNoTracking().Include(s => (s as Group).Students);
+                    return _dbSet.AsNoTracking().Include(s => (s as Group).Course).AsNoTracking().Include(s => (s as Group).Students);
                 case var x when x == typeof(Course):
-                    return _dbSet.Include(s => (s as Course).Groups);
+                    return _dbSet.AsNoTracking().Include(s => (s as Course).Groups);
             }
 
             return null;
