@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentCourses.Data
 {
-    public class GenericRepository<T> where T : class, IEntityWithId
+    public class GenericRepository<T> where T : class, BaseEnttiy
     {
         private readonly StudentCourseContext _context;
         private readonly DbSet<T> _dbSet;

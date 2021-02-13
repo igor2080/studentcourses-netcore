@@ -1,0 +1,43 @@
+﻿@model StudentCourses.Common.Models.GroupModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Students
+        </dt>
+        <dd class="col-sm-10">
+            @for (int i = 0; i < Model.Students.Length; i++)
+            {
+                if (i != 0)
+                {
+                    <text>|</text>
+                }
+                <a asp-action="Details" asp-route-id="@(i+1)" asp-controller="Student">@Model.Students.ElementAt(i).FirstName @Model.Students.ElementAt(i).LastName</a>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
