@@ -49,7 +49,13 @@ namespace StudentCourses.Controllers
         [HttpGet("Group/Create")]
         public IActionResult Create()
         {
-            ViewData["CourseId"] = new SelectList(_courseService.GetAll(), "Id", "Name");
+            var courses = _courseService.GetAll();
+            if (courses.Count() < 1)
+            {
+                TempData["error"] = $"Cannot create groups as there are no courses available";
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CourseId"] = new SelectList(courses, "Id", "Name");
             return View();
         }
 

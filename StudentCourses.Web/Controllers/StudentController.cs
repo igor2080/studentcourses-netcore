@@ -27,6 +27,7 @@ namespace StudentCourses.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.error = TempData["error"];
             return View(_studentService.GetAll());
         }
 
@@ -48,7 +49,15 @@ namespace StudentCourses.Controllers
         [HttpGet("Student/Create")]
         public IActionResult Create()
         {
-            ViewData["GroupId"] = new SelectList(_groupService.GetAll(), "Id", "Name");
+            var groups = _groupService.GetAll();
+
+            if (groups.Count() < 1)
+            {
+                TempData["error"] = $"Cannot create students at this point as there are no active groups";
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewData["GroupId"] = new SelectList(groups, "Id", "Name");
             return View();
         }
 
