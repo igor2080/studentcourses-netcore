@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StudentCourses.Common.Models
 {
-    public class GroupModel:IModel
+    public class GroupModel : IModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

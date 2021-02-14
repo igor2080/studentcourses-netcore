@@ -16,7 +16,7 @@ namespace StudentCourses.Common.Utils
                 Id = entity.Id,
                 Name = entity.Name,
                 Description = entity.Description,
-                Groups=entity.Groups.Select(ToModel).ToArray()
+                Groups=entity.Groups.Select(x=>new GroupModel {Id=x.Id,Name=x.Name }).ToArray()
             };
         }
         public static StudentModel ToModel(this Student entity)
@@ -26,7 +26,7 @@ namespace StudentCourses.Common.Utils
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
-                Group = entity.Group.ToModel()
+                Group = new GroupModel {Id=entity.Group.Id,Name=entity.Group.Name }
             };
         }
         public static GroupModel ToModel(this Group entity)
@@ -36,7 +36,7 @@ namespace StudentCourses.Common.Utils
                 Id = entity.Id,
                 Name = entity.Name,
                 Course=entity.Course.ToModel(),
-                Students=entity.Students.Select(ToModel).ToArray()
+                Students=entity.Students.Select(x=>new StudentModel {Id=x.Id,LastName=x.LastName,FirstName=x.FirstName }).ToArray()
             };
         }
     }

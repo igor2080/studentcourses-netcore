@@ -68,6 +68,8 @@ namespace StudentCourse.Infrastructure.Services
 
         public IEnumerable<GroupModel> GetAll()
         {
+            var test = _repository.GetAll();
+            var test2 = test.Select(x=>x.ToModel());
             return _repository.GetAll().Select(Mapper.ToModel);
         }
 
