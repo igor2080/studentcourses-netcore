@@ -80,7 +80,7 @@ namespace StudentCourse.Infrastructure.Services
             }
 
             Student entity = _repository.Get(model.Id);
-
+            Group groupStore = entity.Group;
             if (entity == null)
             {
                 throw new NullReferenceException(nameof(model));
@@ -90,6 +90,7 @@ namespace StudentCourse.Infrastructure.Services
             entity.FirstName = model.FirstName;
             entity.GroupId = model.Group.Id;
             entity = _repository.Update(entity);
+            entity.Group = groupStore;//for some reason the group gets lost after the update
             return entity.ToModel();
         }
     }

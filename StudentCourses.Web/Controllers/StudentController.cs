@@ -55,10 +55,11 @@ namespace StudentCourses.Controllers
         // POST: Student/Create        
         [HttpPost()]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,FirstName,LastName,GroupId")] StudentModel student)
+        public IActionResult Create([Bind("Id,FirstName,LastName,Group")] StudentModel student)
         {
             if (ModelState.IsValid)
             {
+                student.Group = _groupService.Get(student.Group.Id);
                 _studentService.Create(student);
                 return RedirectToAction(nameof(Index));
             }
@@ -84,7 +85,7 @@ namespace StudentCourses.Controllers
         // POST: Student/Edit/5
         [HttpPost("Student/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,GroupId")] StudentModel student)
+        public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,Group")] StudentModel student)
         {
             if (id != student.Id)
             {

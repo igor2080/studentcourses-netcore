@@ -24,6 +24,7 @@ namespace StudentCourses.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.error = TempData["error"];
             return View(_service.GetAll());
         }
 
@@ -114,7 +115,14 @@ namespace StudentCourses.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             CourseModel course = _service.Get(id);
-            _service.Delete(course);
+            if (course.Groups.Length > 0)
+            {
+                TempData["error"] = $"Cannot delete course {course.Name} because it contains active groups";
+            }
+            else
+            {
+                _service.Delete(course);
+            }
             return RedirectToAction(nameof(Index));
         }
     }

@@ -56,10 +56,11 @@ namespace StudentCourses.Controllers
         // POST: Group/Create
         [HttpPost("Group/Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,CourseId")] GroupModel group)
+        public IActionResult Create([Bind("Id,Name,Course")] GroupModel group)
         {
             if (ModelState.IsValid)
             {
+                group.Course = _courseService.Get(group.Course.Id);
                 _groupService.Create(group);
                 return RedirectToAction(nameof(Index));
             }
@@ -86,7 +87,7 @@ namespace StudentCourses.Controllers
         // POST: Group/Edit/5
         [HttpPost("Group/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,CourseId")] GroupModel group)
+        public IActionResult Edit(int id, [Bind("Id,Name,Course")] GroupModel group)
         {
             if (id != group.Id)
             {
@@ -95,6 +96,7 @@ namespace StudentCourses.Controllers
 
             if (ModelState.IsValid)
             {
+                group.Course = _courseService.Get(group.Course.Id);
                 _groupService.Update(group);
 
                 return RedirectToAction(nameof(Index));

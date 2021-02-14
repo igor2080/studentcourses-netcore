@@ -56,6 +56,7 @@ namespace StudentCourses.Domain.Repositories
         public Course Update(Course entity)
         {
             _context.Courses.Update(entity);
+            _context.SaveChanges();
             return entity;
         }
     }
