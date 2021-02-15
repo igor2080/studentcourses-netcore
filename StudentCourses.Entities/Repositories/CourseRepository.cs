@@ -11,9 +11,9 @@ namespace StudentCourses.Domain.Repositories
 {
     public class CourseRepository : IRepository<Course>
     {
-        private readonly StudentCourseContext _context;
+        private readonly IDbContext _context;
 
-        public CourseRepository(StudentCourseContext context)
+        public CourseRepository(IDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StudentCourse.Infrastructure.Services;
 using StudentCourses.Common.Models;
+using StudentCourses.Domain;
 using StudentCourses.Domain.Entities;
 using StudentCourses.Domain.Repositories;
 using StudentCourses.Models;
@@ -31,13 +32,14 @@ namespace StudentCourses
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddDbContext<StudentCourseContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));            
             services.AddScoped<IRepository<Course>, CourseRepository>();
             services.AddScoped<IService<CourseModel>, CourseService>();
             services.AddScoped<IRepository<Student>, StudentRepository>();
             services.AddScoped<IService<StudentModel>, StudentService>();
             services.AddScoped<IRepository<Group>, GroupRepository>();
             services.AddScoped<IService<GroupModel>, GroupService>();
+            services.AddScoped<IDbContext>(x => x.GetService<StudentCourseContext>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

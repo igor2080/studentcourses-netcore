@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentCourses.Domain;
 using StudentCourses.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace StudentCourses.Models
 {
-    public class StudentCourseContext:DbContext
+    public class StudentCourseContext:DbContext,IDbContext
     {
         public StudentCourseContext(DbContextOptions<StudentCourseContext> options)
             :base(options)
-        {
+        {             
         }
 
         public DbSet<Student> Students { get; set; }

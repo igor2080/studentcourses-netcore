@@ -19,7 +19,7 @@ namespace StudentCourses.Tests
         private Course _testCourse;
 
         [TestInitialize]
-        public void GroupTestInit()
+        public void StudentTestInit()
         {
             _service = new StudentService(_repository.Object);            
             _testCourse = new Course { Id = 1, Description = "description", Name = "name" };

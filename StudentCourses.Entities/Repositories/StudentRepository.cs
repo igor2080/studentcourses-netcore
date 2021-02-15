@@ -11,9 +11,9 @@ namespace StudentCourses.Domain.Repositories
 {
     public class StudentRepository : IRepository<Student>
     {
-        private readonly StudentCourseContext _context;
+        private readonly IDbContext _context;
 
-        public StudentRepository(StudentCourseContext context)
+        public StudentRepository(IDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -28,7 +28,7 @@ namespace StudentCourses.Domain.Repositories
         public void Delete(int id)
         {
             var entity = this.Get(id);
-            _context.Remove(entity);
+            _context.Students.Remove(entity);
             _context.SaveChanges();
         }
 
@@ -54,7 +54,7 @@ namespace StudentCourses.Domain.Repositories
 
         public Student Update(Student entity)
         {
-            _context.Update(entity);
+            _context.Students.Update(entity);
             _context.SaveChanges();
             return entity;
         }
