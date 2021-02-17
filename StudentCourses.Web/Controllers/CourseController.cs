@@ -12,6 +12,7 @@ using StudentCourses.Models;
 
 namespace StudentCourses.Controllers
 {
+    [Route("[controller]")]
     public class CourseController : Controller
     {
         private readonly IService<CourseModel> _service;
@@ -29,7 +30,7 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Course/Details/5
-        [HttpGet("Course/Details/{id}")]
+        [HttpGet("Details/{id}")]
         public IActionResult Details(int id)
         {
             CourseModel course = _service.Get(id);
@@ -43,14 +44,14 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Course/Create
-        [HttpGet("Course/Create")]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Course/Create
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(CourseModel course)
         {
@@ -64,7 +65,7 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Course/Edit/5
-        [HttpGet("Course/Edit/{id}")]
+        [HttpGet("Edit/{id}")]
         public IActionResult Edit(int id)
         {
             CourseModel course = _service.Get(id);
@@ -77,7 +78,7 @@ namespace StudentCourses.Controllers
         }
 
         // POST: Course/Edit/5
-        [HttpPost("Course/Edit/{id}")]
+        [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, CourseModel course)
         {
@@ -96,7 +97,7 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Course/Delete/5
-        [HttpGet("Course/Delete/{id}")]
+        [HttpGet("Delete/{id}")]
         public IActionResult Delete(int id)
         {
             CourseModel course = _service.Get(id);
@@ -110,7 +111,7 @@ namespace StudentCourses.Controllers
         }
 
         // POST: Course/Delete/5
-        [HttpPost("Course/Delete/{id}"), ActionName("Delete")]
+        [HttpPost("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {

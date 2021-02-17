@@ -12,6 +12,7 @@ using StudentCourses.Models;
 
 namespace StudentCourses.Controllers
 {
+    [Route("[controller]")]
     public class StudentController : Controller
     {
         private readonly IService<StudentModel> _studentService;
@@ -32,7 +33,8 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Student/Details/5
-        [HttpGet("Student/Details/{id}")]
+        [HttpGet("Details/{id}")]
+        //[Route("")]
         public IActionResult Details(int id)
         {
             StudentModel student = _studentService.Get(id);
@@ -46,7 +48,7 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Student/Create
-        [HttpGet("Student/Create")]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             var groups = _groupService.GetAll();
@@ -62,7 +64,7 @@ namespace StudentCourses.Controllers
         }
 
         // POST: Student/Create        
-        [HttpPost()]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(StudentModel student)
         {
@@ -78,7 +80,7 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Student/Edit/5
-        [HttpGet("Student/Edit/{id}")]
+        [HttpGet("Edit/{id}")]
         public IActionResult Edit(int id)
         {
             StudentModel student = _studentService.Get(id);
@@ -92,7 +94,7 @@ namespace StudentCourses.Controllers
         }
 
         // POST: Student/Edit/5
-        [HttpPost("Student/Edit/{id}")]
+        [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id,StudentModel student)
         {
@@ -112,7 +114,7 @@ namespace StudentCourses.Controllers
         }
 
         // GET: Student/Delete/5
-        [HttpGet("Student/Delete/{id}")]
+        [HttpGet("Delete/{id}")]
         public IActionResult Delete(int id)
         {
             StudentModel student = _studentService.Get(id);
@@ -125,7 +127,7 @@ namespace StudentCourses.Controllers
         }
 
         // POST: Student/Delete/5
-        [HttpPost("Student/Delete/{id}"), ActionName("Delete")]
+        [HttpPost("Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
