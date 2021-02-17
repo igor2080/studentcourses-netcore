@@ -64,7 +64,7 @@ namespace StudentCourses.Controllers
         // POST: Student/Create        
         [HttpPost()]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,FirstName,LastName,Group")] StudentModel student)
+        public IActionResult Create(StudentModel student)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace StudentCourses.Controllers
         // POST: Student/Edit/5
         [HttpPost("Student/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,Group")] StudentModel student)
+        public IActionResult Edit(int id,StudentModel student)
         {
             if (id != student.Id)
             {

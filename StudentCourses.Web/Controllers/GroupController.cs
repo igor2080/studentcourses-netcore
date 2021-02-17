@@ -62,7 +62,7 @@ namespace StudentCourses.Controllers
         // POST: Group/Create
         [HttpPost("Group/Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Course")] GroupModel group)
+        public IActionResult Create(GroupModel group)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace StudentCourses.Controllers
         // POST: Group/Edit/5
         [HttpPost("Group/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,Course")] GroupModel group)
+        public IActionResult Edit(int id, GroupModel group)
         {
             if (id != group.Id)
             {
