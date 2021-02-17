@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StudentCourses.Common.Models
 {
-    public class StudentModel:IModel
+    public class StudentModel
     {
         public int Id { get; set; }
         [Display(Name = "First name")]

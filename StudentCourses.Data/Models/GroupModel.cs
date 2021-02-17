@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StudentCourses.Common.Models
 {
-    public class GroupModel : IModel
+    public class GroupModel
     {
         public int Id { get; set; }
         [Display(Name ="Group name")]
