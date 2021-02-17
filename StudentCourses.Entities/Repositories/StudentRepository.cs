@@ -20,6 +20,11 @@ namespace StudentCourses.Domain.Repositories
 
         public Student Add(Student entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             _context.Students.Add(entity);
             _context.SaveChanges();
             return entity;
@@ -27,6 +32,11 @@ namespace StudentCourses.Domain.Repositories
 
         public void Delete(int id)
         {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
             var entity = this.Get(id);
             _context.Students.Remove(entity);
             _context.SaveChanges();
@@ -39,6 +49,11 @@ namespace StudentCourses.Domain.Repositories
 
         public Student Get(int id)
         {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
             return _context.Students.Include(x => x.Group).SingleOrDefault(x => x.Id == id);
         }
 
@@ -54,6 +69,11 @@ namespace StudentCourses.Domain.Repositories
 
         public Student Update(Student entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             _context.Students.Update(entity);
             _context.SaveChanges();
             return entity;

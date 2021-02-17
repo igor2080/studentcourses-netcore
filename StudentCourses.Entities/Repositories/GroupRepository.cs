@@ -21,6 +21,11 @@ namespace StudentCourses.Domain.Repositories
 
         public Group Add(Group entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             _context.Groups.Add(entity);
             _context.SaveChanges();
             return entity;
@@ -28,6 +33,11 @@ namespace StudentCourses.Domain.Repositories
 
         public void Delete(int id)
         {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
             Group entity = this.Get(id);
             _context.Groups.Remove(entity);
             _context.SaveChanges();
@@ -40,6 +50,11 @@ namespace StudentCourses.Domain.Repositories
 
         public Group Get(int id)
         {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
             Group entity = _context.Groups.Include(x => x.Course).Include(x => x.Students).SingleOrDefault(x=>x.Id==id);
             return entity;
         }
@@ -56,6 +71,11 @@ namespace StudentCourses.Domain.Repositories
 
         public Group Update(Group entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             _context.Groups.Update(entity);
             _context.SaveChanges();
             return entity;
