@@ -56,8 +56,10 @@ namespace StudentCourses
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, StudentCourseContext context, UserManager<SiteUser> userManager, RoleManager<IdentityRole> rolemgr)
         {
+            SeedData(context, userManager, rolemgr);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -83,6 +85,55 @@ namespace StudentCourses
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        public static void SeedData(StudentCourseContext context, UserManager<SiteUser> userManager, RoleManager<IdentityRole> rolemgr)
+        {
+	        if (context == null)
+	        {
+		        throw new ArgumentNullException(nameof(context));
+	        }
+
+	        if (userManager == null)
+	        {
+		        throw new ArgumentNullException(nameof(userManager));
+	        }
+
+	        if (rolemgr == null)
+	        {
+		        throw new ArgumentNullException(nameof(rolemgr));
+	        }
+
+	        context.Database.Migrate();
+
+            var user = new SiteUser
+	        {
+		        Email = "eugenkhudoliiv@gmail.com",
+		        UserName = "shikigami"
+	        };
+
+	        var adminRole = new IdentityRole("Deans");
+
+            if (context.Users.FirstOrDefault(x => x.Email == user.Email) == null)
+	        {
+		        context.Users.Add(user);
+		        context.SaveChanges();
+			}
+            else
+            {
+	            user = context.Users.FirstOrDefault(x => x.Email == user.Email);
+            }
+
+            if (!rolemgr.Roles.Any())
+            {
+	            rolemgr.CreateAsync(adminRole).GetAwaiter().GetResult();
+            }
+
+            if (context.UserRoles.Count(_ => true) == 0)
+            {
+	            userManager.AddToRoleAsync(user, adminRole.Name).GetAwaiter().GetResult();
+                context.SaveChanges();
+	        }
         }
     }
 }
