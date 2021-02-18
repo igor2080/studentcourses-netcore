@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ using StudentCourses.Domain;
 using StudentCourses.Domain.Entities;
 using StudentCourses.Domain.Repositories;
 using StudentCourses.Models;
+using StudentCourses.Web.Areas.Identity.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +32,10 @@ namespace StudentCourses
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddDbContext<StudentCourseContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));            
+            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             services.AddScoped<IRepository<Course>, CourseRepository>();
             services.AddScoped<IService<CourseModel>, CourseService>();
             services.AddScoped<IRepository<Student>, StudentRepository>();
@@ -40,6 +43,16 @@ namespace StudentCourses
             services.AddScoped<IRepository<Group>, GroupRepository>();
             services.AddScoped<IService<GroupModel>, GroupService>();
             services.AddScoped<IDbContext>(x => x.GetService<StudentCourseContext>());
+            services.AddDefaultIdentity<SiteUser>(options =>
+            {
+                options.Password = new PasswordOptions() { RequireDigit = false, RequiredLength = 4, RequiredUniqueChars = 0, RequireLowercase = false, RequireNonAlphanumeric = false, RequireUppercase = false };
+            })
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<StudentCourseContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +71,10 @@ namespace StudentCourses
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

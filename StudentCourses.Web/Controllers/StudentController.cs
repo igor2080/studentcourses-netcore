@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -28,13 +29,14 @@ namespace StudentCourses.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            
             ViewBag.error = TempData["error"];
             return View(_studentService.GetAll());
         }
 
         // GET: Student/Details/5
-        [HttpGet("Details/{id}")]
-        //[Route("")]
+        [HttpGet]
+        [Route("Details/{id}")]
         public IActionResult Details(int id)
         {
             StudentModel student = _studentService.Get(id);
@@ -49,6 +51,7 @@ namespace StudentCourses.Controllers
 
         // GET: Student/Create
         [HttpGet("Create")]
+        [Authorize(Roles = "Deans")]
         public IActionResult Create()
         {
             var groups = _groupService.GetAll();
@@ -65,6 +68,7 @@ namespace StudentCourses.Controllers
 
         // POST: Student/Create        
         [HttpPost("Create")]
+        [Authorize(Roles = "Deans")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(StudentModel student)
         {
@@ -81,6 +85,7 @@ namespace StudentCourses.Controllers
 
         // GET: Student/Edit/5
         [HttpGet("Edit/{id}")]
+        [Authorize(Roles = "Deans")]
         public IActionResult Edit(int id)
         {
             StudentModel student = _studentService.Get(id);
@@ -95,6 +100,7 @@ namespace StudentCourses.Controllers
 
         // POST: Student/Edit/5
         [HttpPost("Edit/{id}")]
+        [Authorize(Roles = "Deans")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id,StudentModel student)
         {
@@ -115,6 +121,7 @@ namespace StudentCourses.Controllers
 
         // GET: Student/Delete/5
         [HttpGet("Delete/{id}")]
+        [Authorize(Roles = "Deans")]
         public IActionResult Delete(int id)
         {
             StudentModel student = _studentService.Get(id);
@@ -128,6 +135,7 @@ namespace StudentCourses.Controllers
 
         // POST: Student/Delete/5
         [HttpPost("Delete/{id}"), ActionName("Delete")]
+        [Authorize(Roles = "Deans")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {

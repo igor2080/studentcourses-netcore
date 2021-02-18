@@ -32,7 +32,7 @@
                 {
                     <text>|</text>
                 }
-                <a asp-action="Details" asp-route-id="@(i+1)" asp-controller="Group">@Model.Groups.ElementAt(i).Name</a>
+                <a asp-action="Details" asp-route-id="@(Model.Groups.ElementAt(i).Id)" asp-controller="Group">@Model.Groups.ElementAt(i).Name</a>
             }
         </dd>
     </dl>

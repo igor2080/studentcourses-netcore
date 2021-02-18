@@ -32,7 +32,7 @@
                 {
                     <text>|</text>
                 }
-                <a asp-action="Details" asp-route-id="@(i+1)" asp-controller="Student">@Model.Students.ElementAt(i).FirstName @Model.Students.ElementAt(i).LastName</a>
+                <a asp-action="Details" asp-route-id="@(Model.Students.ElementAt(i).Id)" asp-controller="Student">@Model.Students.ElementAt(i).FirstName @Model.Students.ElementAt(i).LastName</a>
             }
         </dd>
     </dl>
