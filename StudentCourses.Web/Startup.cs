@@ -112,8 +112,9 @@ namespace StudentCourses
 		        Email = "eugenkhudoliiv@gmail.com",
 		        UserName = "shikigami"
 	        };
+            var adminRole = new IdentityRole("Deans");
+            var studentRole = new IdentityRole("Deans");
 
-	        var adminRole = new IdentityRole("Deans");
 
             if (context.Users.FirstOrDefault(x => x.Email == user.Email) == null)
 	        {
@@ -124,12 +125,16 @@ namespace StudentCourses
             {
 	            user = context.Users.FirstOrDefault(x => x.Email == user.Email);
             }
-
-            if (!rolemgr.Roles.Any())
+            if (rolemgr.Roles.Where(x => x.Name == "Deans").FirstOrDefault() == null)
             {
-	            rolemgr.CreateAsync(adminRole).GetAwaiter().GetResult();
+                rolemgr.CreateAsync(adminRole).GetAwaiter().GetResult();
             }
-            
+            if (rolemgr.Roles.Where(x => x.Name == "Students").FirstOrDefault() == null)
+            {
+                rolemgr.CreateAsync(studentRole).GetAwaiter().GetResult();
+            }
+
+
             if (userManager.GetRolesAsync(user).GetAwaiter().GetResult().Count == 0)
             {
 	            userManager.AddToRoleAsync(user, adminRole.Name).GetAwaiter().GetResult();

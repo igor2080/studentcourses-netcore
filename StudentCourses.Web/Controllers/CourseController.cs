@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,7 @@ namespace StudentCourses.Controllers
 
         // POST: Course/Create
         [HttpPost("Create")]
+        [Authorize(Roles = "Deans")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(CourseModel course)
         {
@@ -79,6 +81,7 @@ namespace StudentCourses.Controllers
 
         // POST: Course/Edit/5
         [HttpPost("Edit/{id}")]
+        [Authorize(Roles = "Deans")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, CourseModel course)
         {
@@ -112,6 +115,7 @@ namespace StudentCourses.Controllers
 
         // POST: Course/Delete/5
         [HttpPost("Delete/{id}")]
+        [Authorize(Roles = "Deans")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
