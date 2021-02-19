@@ -4,7 +4,6 @@ using Moq;
 using StudentCourses.Domain;
 using StudentCourses.Domain.Entities;
 using StudentCourses.Domain.Repositories;
-using StudentCourses.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

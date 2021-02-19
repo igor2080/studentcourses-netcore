@@ -37,7 +37,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentCourse.Infrastructure\StudentCourse.Infrastructure.csproj" />
-    <ProjectReference Include="..\StudentCourses.Data\StudentCourses.Common.csproj" />
+    <ProjectReference Include="..\StudentCourses.Common\StudentCourses.Common.csproj" />
+    <ProjectReference Include="..\StudentCourses.Domain\StudentCourses.Domain.csproj" />
   </ItemGroup>
 
 </Project>

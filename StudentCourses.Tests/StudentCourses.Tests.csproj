@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentCourse.Infrastructure\StudentCourse.Infrastructure.csproj" />
-    <ProjectReference Include="..\StudentCourses.Entities\StudentCourses.Domain.csproj" />
+    <ProjectReference Include="..\StudentCourses.Domain\StudentCourses.Domain.csproj" />
   </ItemGroup>
 
 </Project>

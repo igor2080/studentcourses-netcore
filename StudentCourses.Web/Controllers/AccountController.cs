@@ -41,7 +41,6 @@ namespace StudentCourses.Web.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-
                 if (result.Succeeded)
                 {
                     return Redirect(string.IsNullOrEmpty(returnUrl) ? "~/" : returnUrl);
