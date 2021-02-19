@@ -129,8 +129,8 @@ namespace StudentCourses
             {
 	            rolemgr.CreateAsync(adminRole).GetAwaiter().GetResult();
             }
-
-            if (context.UserRoles.Count(_ => true) == 0)
+            
+            if (userManager.GetRolesAsync(user).GetAwaiter().GetResult().Count == 0)
             {
 	            userManager.AddToRoleAsync(user, adminRole.Name).GetAwaiter().GetResult();
                 context.SaveChanges();
