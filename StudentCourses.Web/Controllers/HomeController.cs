@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentCourses.Controllers
+namespace StudentCourses.Web.Controllers
 {
     public class HomeController : Controller
     {

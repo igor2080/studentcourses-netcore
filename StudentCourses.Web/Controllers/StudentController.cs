@@ -11,7 +11,7 @@ using StudentCourses.Common.Models;
 using StudentCourses.Domain.Entities;
 using StudentCourses.Models;
 
-namespace StudentCourses.Controllers
+namespace StudentCourses.Web.Controllers
 {
     [Route("[controller]")]
     public class StudentController : Controller

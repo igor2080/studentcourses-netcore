@@ -9,7 +9,7 @@ using StudentCourse.Infrastructure.Services;
 using StudentCourses.Common.Models;
 using StudentCourses.Domain.Entities;
 
-namespace StudentCourses.Controllers
+namespace StudentCourses.Web.Controllers
 {
     [Route("[controller]")]
     public class GroupController : Controller
