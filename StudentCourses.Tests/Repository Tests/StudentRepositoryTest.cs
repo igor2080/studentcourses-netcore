@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using StudentCourses.Domain;
+using StudentCourses.Domain.Context;
 using StudentCourses.Domain.Entities;
 using StudentCourses.Domain.Repositories;
 using System;

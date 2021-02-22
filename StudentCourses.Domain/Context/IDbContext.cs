@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentCourses.Domain.Entities;
 
-namespace StudentCourses.Domain
+namespace StudentCourses.Domain.Context
 {
     public interface IDbContext
     {

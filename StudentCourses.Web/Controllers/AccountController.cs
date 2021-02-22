@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudentCourses.Common.Models;
-using StudentCourses.Web.Areas.Identity.Data;
+using StudentCourses.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

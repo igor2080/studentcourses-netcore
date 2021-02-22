@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StudentCourses.Domain;
 using StudentCourses.Domain.Entities;
-using StudentCourses.Web.Areas.Identity.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentCourses.Models
+namespace StudentCourses.Domain.Context
 {
     public class StudentCourseContext : IdentityDbContext<SiteUser>, IDbContext
     {

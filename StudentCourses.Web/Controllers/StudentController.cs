@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using StudentCourse.Infrastructure.Services;
 using StudentCourses.Common.Models;
 using StudentCourses.Domain.Entities;
-using StudentCourses.Models;
 
 namespace StudentCourses.Web.Controllers
 {

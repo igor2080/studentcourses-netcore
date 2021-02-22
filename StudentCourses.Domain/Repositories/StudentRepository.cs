@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentCourses.Domain.Context;
 using StudentCourses.Domain.Entities;
-using StudentCourses.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

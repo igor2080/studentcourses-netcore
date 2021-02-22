@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace StudentCourses.Web.Areas.Identity.Data
+namespace StudentCourses.Domain.Entities
 {
     public class SiteUser : IdentityUser
     {
